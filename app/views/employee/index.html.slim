@@ -1,0 +1,47 @@
+.mx-auto.pt-xl-5[style="width:800px;"]
+  h1
+    | #{I18n.t("employee.list")}
+  = search_form_for @q, url: {controller: "employee", action:"index" }, class: 'mb-5' do |f|
+    .form-group.row
+      = f.label :name_cont, Employee.human_attribute_name(:name), class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.search_field :name_cont, class: 'form-control'
+    fieldset.form-group
+      .row
+        legend.col-form-label.col-sm-2.pt-0
+          | #{I18n.t("employee.sex")}
+        .col-sm-10
+          .form-check.form-check-inline
+            = f.radio_button :sex_eq, '', id: :q_sex_eq, checked: true, class: 'form-check-input', required: true
+            = f.label :sex_eq, I18n.t("employee.sex_none"), class: 'form-check-label'
+          .form-check.form-check-inline
+            = f.radio_button :sex_eq, :M, id: :q_sex_eq_m, class: 'form-check-input', required: true
+            = f.label :sex_eq, I18n.t("employee.sex_male"), value: :M, class: 'form-check-label'
+          .form-check.form-check-inline
+            = f.radio_button :sex_eq, :F, id: :q_sex_eq_f, class: 'form-check-input', required: true
+            = f.label :sex_eq, I18n.t("employee.sex_female"), value: :F, class: 'form-check-label'
+    .form-group
+      = f.submit class: 'btn btn-outline-primary'
+  .mb-3
+    = paginate @employees
+    = page_entries_info @employees
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= sort_link(@q, :name)
+        th= sort_link(@q, :email)
+        th= sort_link(@q, :sex)
+        th= sort_link(@q, :birthday, Employee.human_attribute_name(:age))
+        th= sort_link(@q, :joinday, Employee.human_attribute_name(:working))
+        th
+    tbody
+      - @employees.each do |employee|
+        tr
+          td= employee.name
+          td= employee.email
+          td= employee.sex_display
+          td= employee.age
+          td= employee.working
+          td
+            = link_to(I18n.t("helpers.button.edit"), "/employee/#{employee.id}/edit", { class: "btn btn-primary mr-3" })
+            = link_to(I18n.t("helpers.button.delegate"), "/employee/#{employee.id}/destroy", { method: :delete, class: "btn btn-danger", data: { confirm: I18n.t("dictionary.messages.destroy_confirm", {name: employee.name})}})

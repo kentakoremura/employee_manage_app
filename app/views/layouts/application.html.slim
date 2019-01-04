@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title
+      | EmployeeManageApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .container
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand[href="#"]
+          | #{I18n.t("dictionary.words.site_name")}
+        #navbarText.collapse.navbar-collapse
+          - if session[:employee_id]
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                = link_to(I18n.t("employee.list"), "/employee/index", { :class => "nav-link" })
+              li.nav-item
+                = link_to(I18n.t("employee.new"), "/employee/new", { :class => "nav-link" })
+            span.navbar-text
+              | #{I18n.t("dictionary.messages.login", {name: @current_employee.name})}
+            span.navbar-text
+              = link_to("sign out", "/logout", { method: :post, :class => "nav-link text-dark" })
+      - if flash[:notice]
+        .pt-xl-2
+        .alert.alert-success.alert-dismissible.fade.show[role="alert"]
+          = flash[:notice]
+          button.close[type="button" data-dismiss="alert" aria-label="閉じる"]
+            span[aria-hidden="true"]
+              | ×
+      = yield

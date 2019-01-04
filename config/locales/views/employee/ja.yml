@@ -1,0 +1,20 @@
+ja:
+  employee:
+    new: 新規作成
+    edit: 編集
+    list: 一覧
+    id: 社員ID
+    name: 名前
+    password: パスワード
+    email: Eメール
+    sex: 性別
+    sex_none: 指定なし
+    sex_male: 男
+    sex_female: 女
+    birthday: 生年月日
+    joinday: 入社日
+    stores: 担当店舗
+    age: 年齢
+    working: 勤続年数
+    create: 登録
+    update: 変更

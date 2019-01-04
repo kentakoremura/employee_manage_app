@@ -1,0 +1,18 @@
+- if @login_error
+  .pt-xl-2
+  .alert.alert-danger[role="alert"]
+    |  ・
+    = @login_error
+    br
+.mx-auto.pt-xl-5[style="width:400px;"]
+  = form_with model: @employee, local: true, url: {controller: "session", action:"login" } do |f|
+    h1
+      | #{I18n.t("session.login")}
+    .form-label-group.pt-xl-4
+      = f.label :email, I18n.t("session.email")
+      = f.text_field :email, id: :session_email, type:"email", class: "form-control", placeholder: I18n.t("session.email"), autocomplete:"email", required: true
+    .form-label-group.pt-xl-3
+      = f.label :password, I18n.t("session.password")
+      = f.text_field :password, id: :employee_password, type:"password", class: "form-control", placeholder: I18n.t("session.password"), autocomplete:"password", required: true
+    .pt-xl-4.mb-lg-5
+      = f.submit :login, class:"btn btn-lg btn-primary btn-block"

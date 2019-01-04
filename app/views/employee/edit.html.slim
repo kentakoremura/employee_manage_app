@@ -1,0 +1,14 @@
+- if @employee.errors.any?
+  .pt-xl-2
+  .alert.alert-danger[role="alert"]
+    - @employee.errors.full_messages.each do |message|
+      |  ・
+      = message
+      br
+.mx-auto.pt-xl-5[style="width:600px;"]
+  = form_with model: @employee, local: true, url: {controller: "employee", action:"update" } do |f|
+    h1
+      | #{I18n.t("employee.edit")}
+    = render partial: "employee/employee", locals: {f: f}
+    .pt-xl-5.mb-lg-5
+      = f.submit I18n.t("employee.update"), class:"btn btn-lg btn-primary btn-block"

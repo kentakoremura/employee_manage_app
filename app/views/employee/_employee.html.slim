@@ -1,0 +1,29 @@
+.form-label-group.pt-xl-4
+  = f.label :name, I18n.t("employee.name")
+  = f.text_field :name, id: :employee_name, class: "form-control", placeholder: I18n.t("employee.name"), autocomplete:"new-name",  autofocus:true
+.form-label-group.pt-xl-3
+  = f.label :email, I18n.t("employee.email")
+  = f.text_field :email, id: :employee_email, type:"email", class: "form-control", placeholder: I18n.t("employee.email"), autocomplete:"new-email"
+.form-label-group.pt-xl-3
+  = f.label :password, I18n.t("employee.password")
+  = f.text_field :password, id: :employee_password, type:"password", class: "form-control", placeholder: I18n.t("employee.password"), autocomplete:"new-password"
+.form-label-group.pt-xl-3
+  = f.label :birthday, I18n.t("employee.birthday")
+  = f.date_field :birthday, id: :employee_birthday, class: "form-control", autocomplete:"new-birthday", maxlength:8
+.form-label-group.pt-xl-3
+  = f.label :joinday, I18n.t("employee.joinday")
+  = f.date_field :joinday, id: :employee_joinday, class: "form-control", autocomplete:"new-joinday", maxlength:8
+.form-label-group.pt-xl-3
+  = f.label :sex, I18n.t("employee.sex")
+.form-check.form-check-inline
+  = f.radio_button :sex, :M, id: :employee_sex_m, class: 'form-check-input', required: true
+  = f.label :sex, I18n.t("employee.sex_male"), value: :M, class: 'form-check-label'
+.form-check.form-check-inline
+  = f.radio_button :sex, :F, id: :employee_sex_f, class: 'form-check-input', required: true
+  = f.label :sex, I18n.t("employee.sex_female"), value: :F, class: 'form-check-label'
+.form-label-group.pt-xl-3
+  = f.label :store_ids, I18n.t("employee.stores")
+= f.collection_check_boxes(:store_ids, Store.all, :id, :name) do |b|
+  .form-check.form-check-inline
+    = b.check_box class: 'form-check-input'
+    = b.label class: 'form-check-label'

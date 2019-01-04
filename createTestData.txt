@@ -1,0 +1,32 @@
+# 社員登録
+@employee = Employee.new(name:"山田太郎",email:"t.yamada@email.com",password:"yamada",birthday:Date.new(1995, 4, 30),joinday:Date.new(2017, 4, 1))
+@employee.save
+@employee1 = Employee.new(name:"加藤太郎",email:"t.kato@email.com",password:"kato",birthday:Date.new(1995, 6, 1),joinday:Date.new(2016, 4, 1))
+@employee1.save
+
+# 店舗登録
+@store = Store.new(name:"新宿店")
+@store.save
+@store1 = Store.new(name:"代々木店")
+@store1.save
+@store2 = Store.new(name:"原宿店")
+@store2.save
+@store3 = Store.new(name:"渋谷店")
+@store3.save
+@store4 = Store.new(name:"恵比寿店")
+@store4.save
+@store5 = Store.new(name:"目黒店")
+@store5.save
+
+# 担当
+@Responsible = Responsible.new(employee_id:1,store_id:1,order:1)
+@Responsible.save
+@Responsible1 = Responsible.new(employee_id:1,store_id:2,order:2)
+@Responsible1.save
+@Responsible2 = Responsible.new(employee_id:2,store_id:3,order:1)
+@Responsible2.save
+@Responsible3 = Responsible.new(employee_id:2,store_id:4,order:2)
+@Responsible3.save
+
+Responsible.delete_all
+Store.delete_all
